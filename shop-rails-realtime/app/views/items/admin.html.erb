@@ -1,0 +1,6 @@
+<h1>Admin</h1>
+<div id="orders">
+  <% Order.all.each do |order| %>
+    <%= render 'order', order: order %>
+  <% end %>
+</div>
