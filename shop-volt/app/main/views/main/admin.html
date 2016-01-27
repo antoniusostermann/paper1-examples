@@ -1,0 +1,9 @@
+<:Title>
+  Admin panel
+
+<:Body>
+  <h1>Admin panel</h1>
+
+  {{store._orders.each do |order|}}
+    #{{order._id}}: {{order.order_positions.count}} Positions<br>
+  {{end}}

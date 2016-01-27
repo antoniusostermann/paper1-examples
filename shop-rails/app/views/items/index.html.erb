@@ -1,0 +1,21 @@
+<h1>Webshop (see also <a href="/admin">ADMIN</a>)</h1>
+
+<% Item.all.each do |item| %>
+  <div style="border: thin solid black">
+    <strong class="item-title"><%= item.title %></strong><br>
+    $<span class="item-price"><%= item.price %></span>
+    <button class="cart-adder" data-item-id="<%= item.id %>">Put in cart</button>
+  </div>
+
+<% end %>
+
+<br><br>
+
+<h3>Current cart (Sum: $<span id="cart-sum">0</span>)</h3>
+<div id="current-cart"></div>
+<br>
+
+<%= form_tag('/checkout', id: 'checkout-form') do %>
+
+  <input type="submit" value="Checkout"></input>
+<% end %>

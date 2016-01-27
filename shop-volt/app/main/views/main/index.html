@@ -1,0 +1,25 @@
+<:Title>
+  Webshop
+
+<:Body>
+  <h1>Webshop (see also <a href="/admin">ADMIN</a>)</h1>
+
+  {{ store._items.all.each do |item| }}
+
+  <div style="border: thin solid black">
+    <strong>{{ item.title }}</strong><br>
+    ${{item.price}}
+    <button e-click="add_to_cart(item)">Put in cart</button>
+  </div>
+
+  {{ end }}
+
+  <br><br>
+
+  <h3>Current cart (Sum: ${{sum}})</h3>
+  {{ _cart_items.each do |item| }}
+    1x {{ item._title }} (${{ item._price }})<br>
+  {{ end }}
+  <br>
+  <button e-click="checkout">Checkout</button>
+

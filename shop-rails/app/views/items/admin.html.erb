@@ -1,0 +1,4 @@
+<h1>Admin</h1>
+<% Order.all.each do |order| %>
+  #<%= order.id %> (<%= order.items_orders.count %> positions) <br>
+<% end %>
