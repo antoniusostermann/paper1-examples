@@ -19,7 +19,7 @@ module Main
         store.order_positions << OrderPosition.new(order: current_order, item: item)
       end
 
-      flash._successes << "New order placed!"
+      Volt.current_app.message_bus.publish('public:order_placed', 'order')
     end
 
     def sum
@@ -29,6 +29,9 @@ module Main
     # -- admin
 
     def admin
+      Volt.current_app.message_bus.on('public:order_placed') do
+        flash._successes << "New order placed!"
+      end
     end
 
     private
