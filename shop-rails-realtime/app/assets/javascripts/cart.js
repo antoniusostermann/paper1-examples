@@ -10,7 +10,6 @@ $(function(){
   });
 
   $("#checkout-form").submit(function(e){
-    console.log("asdasdasd");
 
     e.preventDefault();
 
