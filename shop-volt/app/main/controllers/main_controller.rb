@@ -12,9 +12,14 @@ module Main
     end
 
     def checkout
-      CheckoutTask.execute(_cart_items.map(&:_id)).then do
-        flash._successes << "Your order has been saved"
+      current_order = Order.new
+      store.orders << current_order
+
+      _cart_items.each do |item|
+        store.order_positions << OrderPosition.new(order: current_order, item: item)
       end
+
+      flash._successes << "New order placed!"
     end
 
     def sum
@@ -24,9 +29,6 @@ module Main
     # -- admin
 
     def admin
-      Volt.current_app.message_bus.on('public:order_placed') do |order|
-        flash._successes << "New order placed!"
-      end
     end
 
     private
